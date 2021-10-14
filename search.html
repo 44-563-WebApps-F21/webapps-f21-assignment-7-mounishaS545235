@@ -24,13 +24,13 @@
     </style>
 
     <script>
-        var ids = ["image1", "image2", "image3", "image4", "image5", "image6", "image7", "image8", "image9", "image10", "image11", "image12", 
-        "image13","image14", "image15", "image16", "image17", "image18", "image19", "image20", "image21", "image22", "image23", "image24"];
+        var ids = ["image1", "image2", "image3", "image4", "image5", "image6", "image7", "image8", "image9", "image10", "image11", "image12",
+            "image13", "image14", "image15", "image16", "image17", "image18", "image19", "image20", "image21", "image22", "image23", "image24"];
         var triesCount = 0;
         var animalLocation = 13;
 
         function check(index) {
-            index = index-1;
+            index = index - 1;
             id = ids[index];
             if (index == animalLocation) {
                 document.getElementById(id).src = "panda.jpg";
@@ -58,7 +58,7 @@
 
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 6; j++)
-                    if(grid_distance[i][j] == pos1) {
+                    if (grid_distance[i][j] == pos1) {
                         x1 = i;
                         y1 = j;
                         break;
@@ -67,7 +67,7 @@
 
             for (let i = 0; i < 4; i++) {
                 for (let j = 0; j < 6; j++)
-                    if(grid_distance[i][j] == pos2) {
+                    if (grid_distance[i][j] == pos2) {
                         x2 = i;
                         y2 = j;
                         break;
@@ -76,6 +76,18 @@
 
             var distance = Math.abs(x2 - x1) + Math.abs(y2 - y1);
             return distance;
+        }
+
+        function reset() {
+            triesCount = 0;
+            animalLocation = Math.round(Math.random() * (23 - 0) + 0);
+            document.getElementById("tries").innerHTML = "Number of tries is zero";
+            distanceOfAnimal = "unknown"
+            document.getElementById("distance").innerHTML = "Distance is " + distanceOfAnimal;
+            for (var i = 0; i < 24; i++) {
+
+                document.getElementById(ids[i]).src = "tree.jpg";
+            }
         }
     </script>
 </head>
@@ -91,6 +103,8 @@
                 style="background-color: black;color: azure;">Number of tries is zero.</p>
             <p class="btn shadow-lg p-3 mb-5 rounded col-md-3 hover" id="distance"
                 style="background-color: black;color: azure;">Distance is unknown.</p>
+            <p class="btn shadow-lg p-3 mb-5 rounded col-md-3 hover" onclick="reset()"
+                style="background-color: black;color: azure;">Reset</p>
         </div>
 
         <div class="row justify-content-center">

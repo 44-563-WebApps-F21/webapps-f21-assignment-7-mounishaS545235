@@ -40,51 +40,56 @@
 	</p>
 	<button onclick="makeNewDiv()">Push value</button><br><br>
 	<button onclick="popItem()"> Pop </button><br><br>
-	<button onclick="zap()"> Zap values</button><br>
-
-
+	<button onclick="zap()"> Zap values</button><br><br>
+    <button id="uniqueHandler" onclick="uniqueHandler()">Unique</button>
 
 </body>
 <script>
 	function makeNewDiv() {
 		/* make the div and its text */
-		let element = document.createElement("div")
-		element.innerHTML = document.getElementById("inputList").value
-		element.className = "stack"
-
+		let element = document.createElement("div");
+		element.innerHTML = document.getElementById("inputList").value;
+		element.className = "stack";
 
 		/* add it to the container */
-		document.getElementById('target').appendChild(element)
-
-
-
+		document.getElementById('target').appendChild(element);
 	}
 
 	function popItem() {
-		var stackItems = document.getElementsByClassName("stack")
-
-		let itemsLength = stackItems.length
-		console.log(itemsLength)
+		var stackItems = document.getElementsByClassName("stack");
+		let itemsLength = stackItems.length;
+		console.log(itemsLength);
 		if (itemsLength > 0) {
 			stackItems[itemsLength - 1].remove();
 		}
-
-		
 	}
 
-	function zap()
-	{
-		var stackItems = document.getElementsByClassName("stack")
+	function zap(){
+		var stackItems = document.getElementsByClassName("stack");
 		for (let item of stackItems) {
-				console.log(item.innerHTML)
+				console.log(item.innerHTML);
 				if (item.innerHTML === document.getElementById("inputList").value) {
 					item.remove();
 					console.log("We are getting rid of duplicates.");
-				}
-				
+				}	
 			}
-
 	}
+
+    function uniqueHandler() {
+        let stackItems = document.getElementsByClassName("stack");
+        length = stackItems.length;
+        for (let index = 0; index < length; index++) {
+            let element = stackItems[index].innerHTML;
+            for (let insideIndex = index + 1; insideIndex < length; insideIndex++) {
+                let elementInside = stackItems[insideIndex].innerHTML;
+                if (element == elementInside) {
+                    stackItems[insideIndex].remove();
+                    insideIndex--;
+                    index--;
+                }
+            }
+        }
+    }
 </script>
 
 </html>
